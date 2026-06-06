@@ -1,0 +1,20 @@
+package stepDefintion;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SD_browserSetup {
+	
+	
+	
+	public static WebDriver broswerSetup() {
+		static WebDriver driver = null;
+		static final String browser = "Chrome";
+		
+		if(browser.equals("Chrome")) {
+			driver = new ChromeDriver();
+		}
+		return driver;
+	}
+	
+}

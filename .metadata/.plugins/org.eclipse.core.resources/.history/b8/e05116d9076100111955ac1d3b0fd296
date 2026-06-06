@@ -1,0 +1,12 @@
+package pages;
+
+import webActions.Param;
+
+public class Page_yt {
+	
+	WebDriver driver;
+	Page_YT(Param objParam){
+		PageFactory.initElements()
+	}
+
+}

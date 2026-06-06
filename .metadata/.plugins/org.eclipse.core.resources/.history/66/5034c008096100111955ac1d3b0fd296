@@ -1,0 +1,23 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import webActions.Param;
+
+public class Page_yt {
+
+	WebDriver driver;
+	public Page_yt(Param objParam){
+		driver = objParam.driver;
+		PageFactory.initElements(driver,Page_yt.class);
+	}
+	
+	
+	public void navigateToYoutube(Param objParam) {
+		try {
+			objParam.webActions.navigateToPage(objParam, "https://www.youtube.com/", "Yt is opened");
+		}
+		
+	}
+}

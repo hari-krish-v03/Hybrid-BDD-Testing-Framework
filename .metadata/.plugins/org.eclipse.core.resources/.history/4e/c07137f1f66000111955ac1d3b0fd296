@@ -1,0 +1,15 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class browserHandler {
+	
+	WebDriver driver = null;
+	final String browser = "Chrome";
+	
+	if(browser.equals("Chrome")) {
+		driver = new ChromeDriver();
+	}
+
+}

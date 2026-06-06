@@ -1,0 +1,12 @@
+package webActions;
+
+public class Events {
+	public static void eventCompleted(String eventOutcome, String comment) {
+		if(eventOutcome.equals("PASS")) {
+			System.out.println("Passed");
+		}
+		if(eventOutcome.equals("FAIL")) {
+			System.out.println("Step has failed");'
+		}
+	}
+}

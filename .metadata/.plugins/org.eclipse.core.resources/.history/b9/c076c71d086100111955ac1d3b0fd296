@@ -1,0 +1,19 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import webActions.Param;
+
+public class Page_yt {
+
+
+
+
+	WebDriver driver;
+	Page_yt(Param objParam){
+		driver = objParam.driver;
+		PageFactory.initElements(driver,Page_yt.class);
+	}
+
+}

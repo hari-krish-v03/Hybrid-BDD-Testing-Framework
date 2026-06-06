@@ -1,0 +1,12 @@
+package pages;
+
+
+
+public class Page_yt {
+	
+	WebDrvier driver;
+	Page_YT(Param objParam){
+		PageFactory.initElements()
+	}
+
+}

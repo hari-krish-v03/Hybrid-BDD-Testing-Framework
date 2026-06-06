@@ -1,0 +1,10 @@
+package webActions;
+
+import org.openqa.selenium.WebElement;
+
+public class WebGeneralActions {
+	
+	public static void clickElement(Param objParam, WebElement element, String comment) {
+		
+	}
+}

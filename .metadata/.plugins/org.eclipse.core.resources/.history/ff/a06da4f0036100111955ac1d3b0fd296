@@ -1,0 +1,8 @@
+package webActions;
+
+import StepDefinition.SD_browserSetup; 
+
+public class objParam {
+	
+	Webdriver driver = browserSetup.getDriver();
+}

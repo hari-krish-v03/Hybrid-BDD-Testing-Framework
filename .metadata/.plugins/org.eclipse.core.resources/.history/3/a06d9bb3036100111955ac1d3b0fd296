@@ -1,0 +1,6 @@
+package webActions;
+
+public class objParam {
+	
+	Webdriver driver = browserSetup.getDriver();
+}

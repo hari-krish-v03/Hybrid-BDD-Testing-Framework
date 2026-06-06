@@ -1,0 +1,9 @@
+package webActions;
+
+public class Events {
+	public static void eventCompleted(String eventOutcome, String comment) {
+		if(eventOutcome.equals("Pass")) {
+			System.out.println("")
+		}
+	}
+}

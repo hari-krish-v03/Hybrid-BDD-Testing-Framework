@@ -1,0 +1,30 @@
+package ReportGenerator;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+public class GenerateReports {
+
+	public static void generateReport(String scenarioName) {
+		scenarioName = scenarioName.replaceAll(" ","_");
+		File reportOutputDirectory = new File("TestResults/"+scenarioName);
+		List<String> jsonFiles = new ArrayList<>();
+
+		jsonFiles.add("reports/cucumber.json");
+
+		Configuration config = new Configuration(reportOutputDirectory,"BDD Framework");
+
+		config.setBuildNumber("1");
+
+		config.addClassifications("Browser", "Chrome");
+
+		ReportBuilder reportBuilder = new ReportBuilder(jsonFiles,config);
+		reportBuilder.generateReports();
+
+	}	
+
+}

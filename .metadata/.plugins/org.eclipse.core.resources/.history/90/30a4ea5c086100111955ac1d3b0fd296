@@ -1,0 +1,28 @@
+package webActions;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class WebGeneralActions {
+	
+	//This method clicks on the element
+	public static void clickElement(Param objParam, WebElement element, String comment) {
+		try {
+//			WebDriver driver = objParam.driver;
+			element.click();
+			objParam.reportEvents.eventCompleted("PASS", comment);
+		}
+		catch(Exception e) {
+			objParam.reportEvents.eventCompleted("FAIL", comment);
+		}
+	}
+	
+	public static navigateToPage(String url) {
+		try {
+			
+		}
+		catch(Exception e) {
+			objParam.reportEvetns.eventCompleted("FAIL", comment)
+		}
+	}
+}

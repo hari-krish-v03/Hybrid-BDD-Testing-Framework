@@ -1,0 +1,12 @@
+package webActions;
+
+import org.openqa.selenium.WebDriver;
+
+import stepDefinition.SD_browserSetup; 
+
+public class objParam {
+	
+	SD_browserSetup browserSetup = new SD_browserSetup();
+	WebDriver driver = browserSetup.getDriver();
+	
+}

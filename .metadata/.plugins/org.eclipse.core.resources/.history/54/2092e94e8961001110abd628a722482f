@@ -1,0 +1,42 @@
+package stepDefinition;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.Before;
+import ReportGenerator.GenerateReports;
+import io.cucumber.java.Scenario;
+
+public class Hooks {
+	
+	static WebDriver driver = null;
+	static String browser = "Chrome";
+	
+	@Before
+	public void browserSetup() {
+		if(browser.equals("Chrome")) {
+			driver = new ChromeDriver();
+		}
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+	}
+	
+	@After
+	public void closeBrowser() {
+//		driver.close();
+		driver.quit();
+	}
+	
+	public static WebDriver getDriver() {
+		return driver;
+	}
+	
+	@AfterA
+	public static void genReport(Scenario scenario) {
+		
+		GenerateReports.generateReport(scenario.getName());
+	}
+
+}

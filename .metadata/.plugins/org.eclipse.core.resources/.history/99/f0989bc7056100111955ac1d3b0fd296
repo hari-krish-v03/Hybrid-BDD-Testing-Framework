@@ -1,0 +1,8 @@
+package webActions;
+
+public class WebGeneralActions {
+	
+	public static void clickElement(Param objParam,WebElement element, String comment) {
+		
+	}
+}

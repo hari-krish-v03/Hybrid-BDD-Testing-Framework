@@ -1,0 +1,16 @@
+package webActions;
+
+import org.openqa.selenium.WebElement;
+
+public class WebGeneralActions {
+	
+	//This method clicks on the element
+	public static void clickElement(Param objParam, WebElement element, String comment) {
+		try {
+			WebDriver driver = objParam.driver;
+		}
+		catch(Exception e) {
+			
+		}
+	}
+}
