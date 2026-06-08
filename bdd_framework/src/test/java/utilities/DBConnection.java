@@ -4,12 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import io.cucumber.java.Scenario;
+import java.sql.PreparedStatement;
 
 public class DBConnection {
 	public static Connection connect;
-	public static Statement statement;
+	public static PreparedStatement preparedStatement;
 	public static ResultSet rs;
 	public static String scenarioName = null;
 
@@ -18,9 +17,9 @@ public class DBConnection {
 			//			Connection connect;
 			Class.forName("com.mysql.cj.jdbc.Driver");	
 
-			final String url = "jdbc:mysql://localhost:3306/bdd_framework";
-			final String user = "root";
-			final String pwd = "hari2001"; 
+			final String url = EnvConstants.DB_URL;
+			final String user = EnvConstants.DB_USER;
+			final String pwd = EnvConstants.DB_PASSWORD; 
 			connect = DriverManager.getConnection(url,user,pwd); 
 
 			DBConnection.scenarioName = scenarioName;
@@ -33,17 +32,18 @@ public class DBConnection {
 
 	}
 
-	public static String retriveDataDB(String columnName) {
+	public static String retriveDataFromDB(String columnName) {
 		String requiredData=null;
 		try {
-			String query = "Select * from test where testcase= '" + DBConnection.scenarioName + "'";
-			statement =  connect.createStatement();
-			rs = statement.executeQuery(query);
+			String query = "Select * from test where testcase= ?";
+			preparedStatement = connect.prepareStatement(query);
+			preparedStatement.setString(1, DBConnection.scenarioName);
+			rs = preparedStatement.executeQuery();
 
 			while(rs.next()) {
-				String username = rs.getString("username");
-				String password = rs.getString("password");
-				String browser = rs.getString("browser");
+				//				String username = rs.getString("username");
+				//				String password = rs.getString("password");
+				//				String browser = rs.getString("browser");
 				//				System.out.println("UserName: " + username);
 				//				System.out.println("Password: " + password);
 				//				System.out.println("Browser: " + browser);
@@ -63,7 +63,7 @@ public class DBConnection {
 
 	public static void closeConnection() {
 		try {
-			statement.close();
+			preparedStatement.close();
 			connect.close();
 		}
 		catch(Exception e) {

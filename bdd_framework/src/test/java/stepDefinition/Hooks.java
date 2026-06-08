@@ -51,7 +51,7 @@ public class Hooks {
 		String scenarioName = scenario.getName();
 		//Open DB connection
 		DBConnection.loadDB(scenarioName);
-		browser = utilities.DBConnection.retriveDataDB("browser");
+		browser = utilities.DBConnection.retriveDataFromDB("browser");
 	}
 
 	@After

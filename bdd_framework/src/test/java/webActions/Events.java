@@ -34,13 +34,6 @@ public class Events {
 					style
 					);
 
-			try {
-				Thread.sleep(1000);
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-			}
-
 			js.executeScript(
 					"arguments[0].setAttribute('style', '');",
 					element

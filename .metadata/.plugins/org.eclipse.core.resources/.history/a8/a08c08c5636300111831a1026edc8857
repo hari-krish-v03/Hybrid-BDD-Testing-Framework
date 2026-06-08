@@ -1,0 +1,75 @@
+package utilities;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+
+public class DBConnection {
+	public static Connection connect;
+	public static PreparedStatement statement;
+	public static ResultSet rs;
+	public static String scenarioName = null;
+
+	public static void loadDB(String scenarioName) {
+		try {
+			//			Connection connect;
+			Class.forName("com.mysql.cj.jdbc.Driver");	
+
+			final String url = EnvConstants.DB_URL;
+			final String user = EnvConstants.DB_USER;
+			final String pwd = EnvConstants.DB_PASSWORD; 
+			connect = DriverManager.getConnection(url,user,pwd); 
+
+			DBConnection.scenarioName = scenarioName;
+			System.out.println("DB connection is successful");
+		}
+		catch(Exception e) {
+			System.out.println("Error Connecting to DB: ");
+			e.printStackTrace();
+		}
+
+	}
+
+	public static String retriveDataFromDB(String columnName) {
+		String requiredData=null;
+		try {
+			String query = "Select * from test where testcase= '" + DBConnection.scenarioName + "'";
+			statement =  connect.createStatement();
+			rs = statement.executeQuery(query);
+
+			while(rs.next()) {
+				//				String username = rs.getString("username");
+				//				String password = rs.getString("password");
+				//				String browser = rs.getString("browser");
+				//				System.out.println("UserName: " + username);
+				//				System.out.println("Password: " + password);
+				//				System.out.println("Browser: " + browser);
+
+				requiredData = rs.getString(columnName);
+			}
+
+			System.out.println("Data is fetched from: '"+columnName+"' column successfully");
+			return requiredData;
+		}
+		catch(Exception e) {
+			System.out.println("Unable to Retrive data from DB: ");
+			e.printStackTrace();
+		}
+		return requiredData;
+	}
+
+	public static void closeConnection() {
+		try {
+			statement.close();
+			connect.close();
+		}
+		catch(Exception e) {
+			System.out.println("Unable to close DB connection");
+		}
+
+	}
+
+
+}
