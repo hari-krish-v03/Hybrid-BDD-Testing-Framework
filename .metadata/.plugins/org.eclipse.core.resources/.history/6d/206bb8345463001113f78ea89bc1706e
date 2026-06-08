@@ -1,0 +1,18 @@
+package utilities;
+
+import org.openqa.selenium.WebDriver;
+
+import stepDefinition.Hooks;
+import webActions.Events;
+import webActions.WebGeneralActions; 
+import ReportGenerator.GenerateReports;
+
+public class Param {
+	public WebDriver driver = browserSetup.getDriver();
+	public Hooks browserSetup = new Hooks();
+	
+
+	public WebGeneralActions webActions = new WebGeneralActions();
+	public Events reportEvents = new Events();
+	//	public GenerateReports genReport = new GenerateReports();
+}

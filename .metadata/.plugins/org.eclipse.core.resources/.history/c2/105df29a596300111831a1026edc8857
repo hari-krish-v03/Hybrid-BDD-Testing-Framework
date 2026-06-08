@@ -1,0 +1,51 @@
+package webActions;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import utilities.Param;
+
+public class WebGeneralActions {
+
+	//This method clicks on the element
+	public void clickElement(Param objParam, WebElement element, String comment) {
+		try {
+			//			WebDriver driver = objParam.driver;
+			highlight(objParam.driver,element);
+			element.click();
+			objParam.reportEvents.eventCompleted("PASS", comment);
+		}
+		catch(Exception e) {
+			objParam.reportEvents.eventCompleted("FAIL", comment);
+		}
+	}
+
+	//this method will navigate to the url that is sent via arguments
+	public void navigateToPage(Param objParam ,String url, String comment) {
+		try {
+			WebDriver driver = objParam.driver;
+			driver.navigate().to(url);
+			objParam.reportEvents.eventCompleted("PASS", comment);
+		}
+		catch(Exception e) {
+			System.out.println("Unable to navigate to: "+ url);
+			objParam.reportEvents.eventCompleted("FAIL", comment);
+		}
+	}
+	
+	//this method will verify whether the locator is displayed
+	public void isDisplayed(Param objParam,WebElement element,String comment) {
+		try {
+			boolean elementDisplayed = element.isDisplayed();
+			if(!elementDisplayed) {
+				System.out.println("Element: " + element.toString() + "is not displayed");
+				objParam.reportEvents.eventCompleted("FAIL", comment);
+			}
+			objParam.reportEvents.eventCompleted("PASS", comment);
+		}
+		catch(Exception e) {
+			System.out.println("Element: " + element.toString() + "is not displayed");
+			objParam.reportEvents.eventCompleted("FAIL", comment);
+		}
+	}
+}

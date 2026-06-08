@@ -1,0 +1,16 @@
+package utilities;
+
+public class DBConnection {
+	
+	public void loadDB() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");	
+		}
+		catch(Exception e) {
+			
+		}
+			
+	}
+	
+	 
+}

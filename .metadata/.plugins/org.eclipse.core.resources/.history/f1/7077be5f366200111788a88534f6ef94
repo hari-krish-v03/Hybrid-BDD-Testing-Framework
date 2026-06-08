@@ -1,0 +1,10 @@
+package utilities;
+
+public class DBConnection {
+	
+	public void loadDB() {
+		Class.forName("com.mysql.cj.jdbc.Driver");	
+	}
+	
+	 
+}

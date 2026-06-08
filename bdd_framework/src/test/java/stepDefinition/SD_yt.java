@@ -9,20 +9,29 @@ import utilities.Param;
 public class SD_yt {
 
 	Param objParam = new Param();
-	//	WebDriver driver = objParam.driver;
 
 	@When("Navigated to youtube")
-	public void navigated_to_youtube() {
+	public void NavigateToYouTube() {
+		objParam.driver = Hooks.getDriver();
 		Page_yt ytPage = new Page_yt(objParam);
+
 		ytPage.navigateToYoutube(objParam);
 	}
 
-	@Then("Validate videos are displayed")
-	public void validate_videos_are_displayed() {
+	@Then("Validate youtube logo is displayed")
+	public void ValidateLogoIsDisplayed() {
+		objParam.driver = Hooks.getDriver();
+		Page_yt ytPage = new Page_yt(objParam);
+
+		ytPage.logoIsDisplayed(objParam);
 	}
 
-	@Then("Click on any video")
-	public void click_on_any_video() {
+	@Then("Search for video")
+	public void SearchForVideo() {
+		objParam.driver = Hooks.getDriver();
+		Page_yt ytPage = new Page_yt(objParam);
+
+		ytPage.searchForVideo(objParam);
 	}
 
 

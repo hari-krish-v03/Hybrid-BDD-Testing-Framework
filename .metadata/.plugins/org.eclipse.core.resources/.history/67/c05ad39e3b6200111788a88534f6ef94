@@ -1,0 +1,26 @@
+package utilities;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBConnection {
+	
+	public void loadDB() {
+		Connect connect;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");	
+			
+			final String url = "jdbc:mysql://localhost:3306/bdd_frameowrk";
+			final String user = "root";
+			final String pwd = "hari2001"; 
+			connect = DriverManager.getConnection(url,user,pwd); 
+			
+		}
+		catch(Exception e) {
+			System.out.println("Error Connecting to DB");
+		}
+			
+	}
+	
+	 
+}

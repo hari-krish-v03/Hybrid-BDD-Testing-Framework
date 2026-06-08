@@ -1,0 +1,61 @@
+package utilities;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class DBConnection {
+	Connection connect;
+	Statement statement;
+	ResultSet rs;
+
+	public void loadDB() {
+		try {
+//			Connection connect;
+			Class.forName("com.mysql.cj.jdbc.Driver");	
+
+			final String url = "jdbc:mysql://localhost:3306/bdd_framework";
+			final String user = "root";
+			final String pwd = "hari2001"; 
+			connect = DriverManager.getConnection(url,user,pwd); 
+
+			
+
+		}
+		catch(Exception e) {
+			System.out.println("Error Connecting to DB");
+		}
+
+	}
+
+	public void retriveData(String columnName) {
+		try {
+			String query = "Select * from test";
+			statement =  connect.createStatement();
+			rs = statement.executeQuery(query);
+
+			while(rs.next()) {
+				String username = rs.getString("username");
+				String password = rs.getString("password");
+				String browser = rs.getString("browser");
+				System.out.println(username);
+
+				System.out.println(password);
+
+				System.out.println(browser);
+			}
+			
+		}
+		catch(Exception e) {
+			System.out.println("Unable to Retrive data");
+		}
+		finally{
+			statement.close();
+			connect.close();
+		}
+
+	}
+
+
+}

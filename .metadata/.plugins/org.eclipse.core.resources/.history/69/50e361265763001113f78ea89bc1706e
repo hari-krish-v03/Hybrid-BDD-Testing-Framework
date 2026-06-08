@@ -1,0 +1,30 @@
+package stepDefinition;
+
+import org.openqa.selenium.WebDriver;
+
+import io.cucumber.java.en.*;
+import pages.Page_yt;
+import utilities.Param;
+
+public class SD_yt {
+
+	Param objParam = new Param();
+	
+	@When("Navigated to youtube")
+	public void navigated_to_youtube() {
+		objParam.driver = Hooks.getDriver();
+		
+		Page_yt ytPage = new Page_yt(objParam);
+		ytPage.navigateToYoutube(objParam);
+	}
+
+	@Then("Validate youtube logo is displayed")
+	public void validate_videos_are_displayed() {
+	}
+
+	@Then("Click on any video")
+	public void click_on_any_video() {
+	}
+
+
+}

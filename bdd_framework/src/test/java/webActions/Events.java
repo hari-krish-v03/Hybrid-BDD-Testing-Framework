@@ -1,12 +1,65 @@
 package webActions;
 
+import java.time.Duration;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import utilities.Param;
+
 public class Events {
+
 	public void eventCompleted(String eventOutcome, String comment) {
 		if(eventOutcome.equals("PASS")) {
 			System.out.println("Step has passed");
 		}
 		if(eventOutcome.equals("FAIL")) {
 			System.out.println("Step has failed");
+			throw new RuntimeException(comment+" : function has failed");
+		}
+	}
+
+	public static void highlight(WebDriver driver,WebElement element) {
+		try {
+
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			String style = "border: 3px solid red; background: yellow;";
+
+			js.executeScript(
+					"arguments[0].setAttribute('style', arguments[1]);",
+					element,
+					style
+					);
+
+			try {
+				Thread.sleep(1000);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+			js.executeScript(
+					"arguments[0].setAttribute('style', '');",
+					element
+					);
+		}
+		catch(Exception e) {
+			System.out.println("Unable to highlight element");
+			e.printStackTrace();
+		}
+	}
+
+	public static void waitUntilVisibility(WebDriver driver, WebElement element) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver,  Duration.ofSeconds(5));
+			wait.until(ExpectedConditions.visibilityOf(element));
+
+		}
+		catch(Exception e) {
+			System.out.println("Problem in waitUntilVisibility funciton");
 		}
 	}
 }

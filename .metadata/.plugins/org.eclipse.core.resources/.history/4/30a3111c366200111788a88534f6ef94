@@ -1,0 +1,8 @@
+package utilities;
+import java.lang.Class;
+
+public class DBConnection {
+	
+	Class.forName("com.mysql.cj.jdbc.Driver");
+
+}

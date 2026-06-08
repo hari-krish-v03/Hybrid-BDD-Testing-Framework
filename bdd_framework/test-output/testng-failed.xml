@@ -5,6 +5,7 @@
     <classes>
       <class name="runner.TestRunner">
         <methods>
+          <include name="genReport"/>
           <include name="setUpClass"/>
           <include name="runScenario" invocation-numbers="0"/>
           <include name="tearDownClass"/>

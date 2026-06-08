@@ -1,0 +1,47 @@
+package webActions;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+
+import utilities.Param;
+
+public class Events {
+	public void eventCompleted(String eventOutcome, String comment) {
+		if(eventOutcome.equals("PASS")) {
+			System.out.println("Step has passed");
+		}
+		if(eventOutcome.equals("FAIL")) {
+			System.out.println("Step has failed");
+		}
+	}
+
+	public static void highlight(Param objParam,WebElement element) {
+		try {
+
+			JavascriptExecutor js = (JavascriptExecutor) objParam.driver;
+			String style = "border: 3px solid red; background: yellow;";
+
+			js.executeScript(
+					"arguments[0].setAttribute('style', arguments[1]);",
+					element,
+					style
+					);
+
+			try {
+				Thread.sleep(300);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+
+			js.executeScript(
+					"arguments[0].setAttribute('style', '');",
+					element
+					);
+		}
+		catch(Exception e) {
+			System.out.println("Unable to highlight element");
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,78 @@
+package utilities;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import io.cucumber.java.Scenario;
+
+public class DBConnection {
+	public static Connection connect;
+	public static Statement statement;
+	public static ResultSet rs;
+	public static String scenarioName = null;
+	public static void loadDB(String scenarioName) {
+		try {
+			//			Connection connect;
+			Class.forName("com.mysql.cj.jdbc.Driver");	
+
+			final String url = "jdbc:mysql://localhost:3306/bdd_framework";
+			final String user = "root";
+			final String pwd = "hari2001"; 
+			connect = DriverManager.getConnection(url,user,pwd); 
+
+			DBConnection.scenarioName = scenarioName;
+			System.out.println("DB connection is successful");
+
+
+		}
+		catch(Exception e) {
+			System.out.println("Error Connecting to DB: ");
+			e.printStackTrace();
+		}
+
+	}
+
+	public static String retriveDataDB(String columnName) {
+		String requiredData=null;
+		try {
+			String query = "Select * from test where testcase= '" + DBConnection.scenarioName + "'";
+			statement =  connect.createStatement();
+			rs = statement.executeQuery(query);
+
+			while(rs.next()) {
+				String username = rs.getString("username");
+				String password = rs.getString("password");
+				String browser = rs.getString("browser");
+				//				System.out.println("UserName: " + username);
+				//				System.out.println("Password: " + password);
+				//				System.out.println("Browser: " + browser);
+
+				requiredData = rs.getString(columnName);
+			}
+
+			System.out.println("Data is fetched from: '"+columnName+"' column successfully");
+			return requiredData;
+
+		}
+		catch(Exception e) {
+			System.out.println("Unable to Retrive data from DB: ");
+			e.printStackTrace();
+		}
+		return requiredData;
+	}
+
+	public static void closeConnection() {
+		try {
+			statement.close();
+			connect.close();
+		}
+		catch(Exception e) {
+			System.out.println("Unable to close DB connection");
+		}
+
+	}
+
+
+}

@@ -1,0 +1,6 @@
+package Locators;
+
+public class Locators {
+
+	public static final String YtLogo = "(//*[@class='yt-icon-shape style-scope yt-icon ytSpecIconShapeHost'])[2]";
+}

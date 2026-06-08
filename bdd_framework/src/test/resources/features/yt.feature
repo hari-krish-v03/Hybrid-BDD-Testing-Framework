@@ -1,6 +1,6 @@
 Feature: This features tests Youtube
 
-  Scenario: Check videos are displayed
+  Scenario: Check_videos_are_displayed
     When Navigated to youtube
-    Then Validate videos are displayed
-    And Click on any video
+    Then Validate youtube logo is displayed
+    And Search for video

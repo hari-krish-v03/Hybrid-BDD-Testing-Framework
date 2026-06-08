@@ -1,0 +1,8 @@
+package Locators;
+
+public class Locators {
+
+	public static final String YtLogo = "(//*[@class='yt-icon-shape style-scope yt-icon ytSpecIconShapeHost'])[2]";
+	public static final String YtSearchBar = "//*[@class='ytSearchboxComponentInput yt-searchbox-input title']";
+	public static final String SearchBtn = "(//*[@class='yt-icon-shape ytSpecIconShapeHost'])[2]";
+}

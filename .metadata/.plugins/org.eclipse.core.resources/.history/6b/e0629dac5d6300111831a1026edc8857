@@ -1,0 +1,60 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import Locators.*;
+
+import utilities.Param;
+
+public class Page_yt {
+
+	@FindBy(xpath=Locators.YtLogo)
+	WebElement YtLogo;
+	
+	@FindBy(xpath=Locators.YtSearchBar)
+	WebElement YtSearchBar;
+	
+	@FindBy(xpath=Locators.SearchBtn)
+	WebElement SearchBtn
+
+	WebDriver driver;
+	public Page_yt(Param objParam){
+		driver = objParam.driver;
+		PageFactory.initElements(driver,this);
+	}
+
+	public void navigateToYoutube(Param objParam) {
+		try {
+			objParam.webActions.navigateToPage(objParam, "https://www.youtube.com/", "Yt is opened");
+			Thread.sleep(5000);
+			System.out.println(utilities.DBConnection.retriveDataDB("username"));
+		}
+		catch(Exception e) {
+			objParam.reportEvents.eventCompleted("FAIL", "navigateToYoutube");
+		}
+
+	}
+
+	public void logoIsDisplayed(Param objParam) {
+		try{
+			objParam.webActions.isDisplayed(objParam, YtLogo, "Youtube Logo is displayed");
+		}
+		catch(Exception e) {
+			objParam.reportEvents.eventCompleted("FAIL", "logoIsDisplayed");
+		}
+	}
+	
+	public void searchForVideo(Param objParam) {
+		try {
+			objParam.webActions.setField(objParam, YtSearchBar, "News", "Youtube Search Bar");
+			objParam.webActions.clickElement(objParam, YtLogo, null);
+			
+			
+		}
+		catch(Exception e) {
+			objParam.reportEvents.eventCompleted("PASS", "searchForVideo");
+		}
+	}
+}
